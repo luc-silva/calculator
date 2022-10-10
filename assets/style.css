@@ -23,8 +23,14 @@
 }
 
 #screen{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-size: 1.5rem;
     width: 100%;
     height: 20%;
+
     margin-bottom: 2rem;
 
     background-color: white;
@@ -37,6 +43,7 @@
 
     width: 100%;
     height: 80%;
+    cursor: pointer;
 }
 
 .button-row{
@@ -55,11 +62,14 @@ button{
 
     border: none;
     outline: rgb(219, 219, 219) solid 1px;
-    background-color: white;
+    background-color: rgb(247, 247, 247);
 }
 
-.equals{
+#equals{
     color: rgb(248, 87, 87);
     outline: rgb(248, 87, 87) solid 1px;
     background-color: rgb(255, 223, 223);
+}
+.digit{
+    background-color: white;
 }
