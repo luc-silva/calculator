@@ -20,20 +20,22 @@ addButton.addEventListener("click", () => {
         calculusScreen.textContent = `${calcArray[0]} + `
         operation = add
         mainScreen.textContent = ""
+        equalsButtton.addEventListener("click", aoi)
     }
     checker()
 })
 
 let equalsButtton = document.querySelector("#equals")
-equalsButtton.addEventListener("click", () => {
+function aoi(){
     if(parseFloat(mainScreen.textContent)){
         calcArray.push(parseFloat(mainScreen.textContent))
         console.log(calcArray)
         calculusScreen.textContent += calcArray[1]
         mainScreen.textContent = ""
         calc(operation)
+        equalsButtton.removeEventListener("click", aoi)
     }
-})
+}
 
 let clearButton = document.querySelector
 
