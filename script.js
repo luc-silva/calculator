@@ -1,50 +1,48 @@
-let screen = document.querySelector("#screen")
+let mainScreen = document.querySelector("#screen")
 let calculusScreen = document.querySelector("#calculus")
 
-let operator
-
-let firstValue = ""
 let digits = document.querySelectorAll(".digit")
 digits.forEach((digit) => {
     digit.addEventListener("click", function (){
-        screen.textContent += this.value
-        firstValue += this.value
+        mainScreen.textContent += this.value
     })
 })
 
-let arr = []
+let calcArray = []
+let operation = null
+
 const add = (a, b) => a + b
+
 let addButton = document.querySelector("#add")
 addButton.addEventListener("click", () => {
-    operator = add
-    screen.textContent = ""
-    if(firstValue){
-        calculusScreen.textContent = `${firstValue} +`
-        arr.push(parseFloat(firstValue))
+    if(parseFloat(mainScreen.textContent)){
+        calcArray.push(parseFloat(mainScreen.textContent))
+        calculusScreen.textContent = `${calcArray[0]} + `
+        operation = add
+        mainScreen.textContent = ""
     }
-    firstValue = ""
+    checker()
 })
 
-let equals = document.querySelector("#equals")
-equals.addEventListener("click", () => {
-    if(firstValue){
-        calculusScreen.textContent += ` ${firstValue}`
-        arr.push(parseFloat(firstValue))
-        firstValue = ""
-        checker()  
+let equalsButtton = document.querySelector("#equals")
+equalsButtton.addEventListener("click", () => {
+    if(parseFloat(mainScreen.textContent)){
+        calcArray.push(parseFloat(mainScreen.textContent))
+        console.log(calcArray)
+        calculusScreen.textContent += calcArray[1]
+        mainScreen.textContent = ""
+        calc(operation)
     }
 })
+
+let clearButton = document.querySelector
+
 function checker(){
-    if(arr.length == 2){
-        calc(arr)
-        // console.log(`calculado:`, arr)
-        screen.textContent = arr[0]
+    if(calcArray.length == 2){
+        calc(operation)
     }
-    // screen.textContent = ""
 }
-function calc(array){
-    let total = 0
-    total = array.reduce(operator)
-    arr = [total]
+function calc(operation){
+    mainScreen.textContent = calcArray.reduce(operation)
+    calcArray = []
 }
-
