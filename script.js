@@ -14,6 +14,7 @@ let operation = null
 const add = (a, b) => a + b
 const substract = (a, b) => a - b
 const multiply = (a, b) => a * b
+const divide = (a, b) => a / b
 
 let addButton = document.querySelector("#add")
 addButton.addEventListener("click", () => {
@@ -45,6 +46,18 @@ multiplyButton.addEventListener("click", () => {
         calcArray.push(parseFloat(mainScreen.textContent))
         calculusScreen.textContent = `${calcArray[0]} x `
         operation = multiply
+        mainScreen.textContent = ""
+        equalsButtton.addEventListener("click", equals)
+    }
+    checker()
+})
+
+let divideButton = document.querySelector("#divide")
+divideButton.addEventListener("click", () => {
+    if(mainScreen.textContent){
+        calcArray.push(parseFloat(mainScreen.textContent))
+        calculusScreen.textContent = `${calcArray[0]} / `
+        operation = divide
         mainScreen.textContent = ""
         equalsButtton.addEventListener("click", equals)
     }
