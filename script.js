@@ -13,6 +13,7 @@ let operation = null
 
 const add = (a, b) => a + b
 const substract = (a, b) => a - b
+const multiply = (a, b) => a * b
 
 let addButton = document.querySelector("#add")
 addButton.addEventListener("click", () => {
@@ -21,20 +22,44 @@ addButton.addEventListener("click", () => {
         calculusScreen.textContent = `${calcArray[0]} + `
         operation = add
         mainScreen.textContent = ""
-        equalsButtton.addEventListener("click", aoi)
+        equalsButtton.addEventListener("click", equals)
+    }
+    checker()
+})
+
+let substractButton = document.querySelector("#substract")
+substractButton.addEventListener("click", () => {
+    if(parseFloat(mainScreen.textContent)){
+        calcArray.push(parseFloat(mainScreen.textContent))
+        calculusScreen.textContent = `${calcArray[0]} - `
+        operation = substract
+        mainScreen.textContent = ""
+        equalsButtton.addEventListener("click", equals)
+    }
+    checker()
+})
+
+let multiplyButton = document.querySelector("#multiply")
+multiplyButton.addEventListener("click", () => {
+    if(mainScreen.textContent){
+        calcArray.push(parseFloat(mainScreen.textContent))
+        calculusScreen.textContent = `${calcArray[0]} x `
+        operation = multiply
+        mainScreen.textContent = ""
+        equalsButtton.addEventListener("click", equals)
     }
     checker()
 })
 
 let equalsButtton = document.querySelector("#equals")
-function aoi(){
+function equals(){
     if(parseFloat(mainScreen.textContent)){
         calcArray.push(parseFloat(mainScreen.textContent))
         console.log(calcArray)
         calculusScreen.textContent += calcArray[1]
         mainScreen.textContent = ""
         calc(operation)
-        equalsButtton.removeEventListener("click", aoi)
+        equalsButtton.removeEventListener("click", equals)
     }
 }
 
