@@ -25,14 +25,14 @@ addButton.addEventListener("click", () => {
         operation = add
         mainScreen.textContent = ""
         equalsButtton.addEventListener("click", equals)
+        decimalButton.addEventListener("click", addDecimal)
     }
     checker()
 })
 
 let substractButton = document.querySelector("#substract")
 substractButton.addEventListener("click", () => {
-    if(mainScreen.textContent
-        || parseFloat(mainScreen.textContent) == 0){
+    if(mainScreen.textContent || parseFloat(mainScreen.textContent) == 0){
         calcArray.push(parseFloat(mainScreen.textContent))
         calculusScreen.textContent = `${calcArray[0]} - `
         operation = substract
@@ -44,8 +44,7 @@ substractButton.addEventListener("click", () => {
 
 let multiplyButton = document.querySelector("#multiply")
 multiplyButton.addEventListener("click", () => {
-    if(mainScreen.textContent
-        || parseFloat(mainScreen.textContent) == 0){
+    if(mainScreen.textContent || parseFloat(mainScreen.textContent) == 0){
         calcArray.push(parseFloat(mainScreen.textContent))
         calculusScreen.textContent = `${calcArray[0]} x `
         operation = multiply
@@ -57,10 +56,9 @@ multiplyButton.addEventListener("click", () => {
 
 let divideButton = document.querySelector("#divide")
 divideButton.addEventListener("click", () => {
-    if(mainScreen.textContent
-        || parseFloat(mainScreen.textContent) == 0){
+    if(mainScreen.textContent || parseFloat(mainScreen.textContent) == 0){
         calcArray.push(parseFloat(mainScreen.textContent))
-        calculusScreen.textContent = `${calcArray[0]} / `
+        calculusScreen.textContent = `${calcArray[0]}  `
         operation = divide
         mainScreen.textContent = ""
         equalsButtton.addEventListener("click", equals)
@@ -71,14 +69,15 @@ divideButton.addEventListener("click", () => {
 //features
 let equalsButtton = document.querySelector("#equals")
 function equals(){
-    if(mainScreen.textContent
-        || parseFloat(mainScreen.textContent) == 0){
+    if(mainScreen.textContent || parseFloat(mainScreen.textContent) == 0){
         calcArray.push(parseFloat(mainScreen.textContent))
-        console.log(calcArray)
         calculusScreen.textContent += calcArray[1]
         mainScreen.textContent = ""
         calc(operation)
         equalsButtton.removeEventListener("click", equals)
+        if(parseFloat(mainScreen.textContent) % 1 == 0){
+            decimalButton.addEventListener("click", addDecimal)
+        }
     }
 }
 
@@ -87,6 +86,7 @@ clearButton.addEventListener("click", () => {
     mainScreen.textContent = ""
     calculusScreen.textContent = ""
     operation = null
+    decimalButton.addEventListener("click", addDecimal)
 })
 
 let backspaceButton = document.querySelector("#backspace")
@@ -109,6 +109,14 @@ positiveNegativeButton.addEventListener("click", () => {
     }
     mainScreen.textContent = modifiedValue.join("")
 })
+
+let decimalButton = document.querySelector("#dot")
+function addDecimal (){
+    mainScreen.textContent += "."
+    decimalButton.removeEventListener("click", addDecimal)
+}
+decimalButton.addEventListener("click", addDecimal)
+
 
 //misc
 function checker(){
