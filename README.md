@@ -1,4 +1,4 @@
-# Etch-A-Sketch
+# calculator
 Calculator made by me as a project for The Odin Project curriculum.
 
 ## Images
